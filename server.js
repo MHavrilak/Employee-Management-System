@@ -140,7 +140,9 @@ function viewEmployee() {
 function updateEmployeeRole() {
   inquirer
     .prompt({
-
+      name: "action",
+      type: "text",
+      message: "Which Employee Role are you updating?",
     })
   connection.query("UPDATE employee SET role_id = ? WHERE id = ?", [answer.action, answer.action2], (err, res) => { 
      

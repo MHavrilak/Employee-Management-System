@@ -79,20 +79,36 @@ function addDept() {
 
 function addRoles() {
   inquirer
-  .prompt ({
-    name: "action",
+  .prompt ([
+    {
+    name: "role",
     type: "text",
-    message: "What Role are you adding?",
-  }).then(function(answer) {
-    connection.query("INSERT INTO role (title) VALUES (?)", [answer.action], (err, res) => { 
+    message: 
+      "What Role are you adding?",
+    },
+    {
+    name: "salary",
+    type: "text",
+    message: 
+      "What is the salary?",
+    },
+    {
+    name: "department",
+    type: "text",
+    message: 
+      "What is the Department ID?"
+    },
+  ])
+  .then(function(answer) {
+   let question =  connection.query("INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)", [answer.role, answer.salary, answer.department], (err, res) => { 
       if(err) throw err;
       console.log("Role Added"); 
       startSearch()
           
         });
-  
         
-      });
+  
+       });
 
       };
 function addEmployee() {
